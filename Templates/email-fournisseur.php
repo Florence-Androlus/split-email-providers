@@ -1,5 +1,6 @@
 <?php
 // Construction du corps de l'email avec un bandeau, logo, et informations de la boutique
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 			$email_body = '
 

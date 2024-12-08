@@ -42,9 +42,6 @@ class Export_fournisseurs {
             ]);
         }
     
-        // Fermer correctement le fichier en utilisant la méthode WP_Filesystem
-        // Utiliser wp_filesystem si nécessaire pour plus de sécurité dans la gestion des fichiers
-    
         // Récupérer le contenu du buffer de sortie
         $csvContent = ob_get_clean();
 

@@ -1,5 +1,7 @@
 <!-- Tab panes -->
-
+<?php 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="add">		
         <div class="div_conteneur_parent">

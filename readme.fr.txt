@@ -1,5 +1,5 @@
 === Split Email Providers ===
-Contributors: https://github.com/Florence-Androlus/split-email-providers
+Contributors: Florence Androlus,https://github.com/Florence-Androlus/
 Donate link: https://fan-develop.fr
 Tags: WooCommerce, fournisseur, email, gestion fournisseurs
 Requires at least: 5.0

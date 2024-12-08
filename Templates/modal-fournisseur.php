@@ -1,5 +1,7 @@
 <!-- Fenêtre modale -->
-
+<?php 
+if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 <div id="myModal" class="modal" tabindex="-1">
 
     <div class="modal-dialog">

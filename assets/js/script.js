@@ -88,9 +88,7 @@ jQuery(document).ready(function($) {
 
     // Suppression du message de licence au bout de 6 secondes
     setTimeout(function() {
-
         $('#auto-dismiss-licence').fadeOut('slow');
-
     }, 6000); // 6000 millisecondes = 6 secondes
     
     // Suppression du message général au bout de 4 secondes

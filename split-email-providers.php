@@ -6,7 +6,6 @@
 */
 
 /* Plugin Name:        Split Email Providers
-* Plugin URI:          https://fan-develop.fr
 * Description:         Gestion des envois d'emails aux fournisseurs
 * Version:             1.0.0
 * Requires at least:   6.7

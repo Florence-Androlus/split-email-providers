@@ -2,11 +2,9 @@
 
 namespace fand;
 
-use WP_REST_Request;
 use fand\Classes\Router;
 use fand\Classes\FAND_Attribut;
 use fand\Classes\Database\Database;
-use fand\Classes\Api\Gestion_licence;
 
 class FANDSettingsPage {
 
@@ -23,13 +21,6 @@ class FANDSettingsPage {
 		add_action('woocommerce_payment_complete', [$this,'envoyer_email_fournisseur_apres_paiement']);
 		add_action('woocommerce_order_status_processing', [$this,'envoyer_email_fournisseur_manuel']);
 
-		add_action('rest_api_init', function () {
-            register_rest_route('licence/v1', '/verify', array(
-                'methods' => 'post',
-                'callback' => [$this, 'verify_licence_key'],
-                'permission_callback' => '__return_true',
-            ));
-        });
     }
 
 	// Fonction d'activation du plugin
@@ -75,23 +66,17 @@ class FANDSettingsPage {
 			$plugin_version = '1.0.0'; // Remplacez la version de plugin
 
 			// Enqueue des styles CSS
-			wp_enqueue_style('bootstrap5',FAND_PLUGIN_URL . 'node_modules/bootstrap/dist/css/bootstrap.min.css',array(),$plugin_version);
-			wp_enqueue_style('font-awesome',FAND_PLUGIN_URL . 'node_modules/fontawesome-free/css/all.min.css',array(),$plugin_version);
+			wp_enqueue_style('bootstrap5',FAND_PLUGIN_URL . 'assets/css/bootstrap.min.css',array(),$plugin_version);
+			wp_enqueue_style('font-awesome',FAND_PLUGIN_URL . 'assets/css/all.min.css',array(),$plugin_version);
 			wp_enqueue_style('custom-style',FAND_PLUGIN_URL . 'assets/css/style.css',array(),$plugin_version);
-			wp_enqueue_style('datatables-css',FAND_PLUGIN_URL . 'node_modules/datatables.net-dt/css/dataTables.min.css',array(),$plugin_version);
+			wp_enqueue_style('datatables-css',FAND_PLUGIN_URL . 'assets/css/dataTables.min.css',array(),$plugin_version);
 
 			// Enqueue des scripts JavaScript
 			wp_enqueue_script('jquery'); // Charge jQuery en priorité
-			wp_enqueue_script('bootstrap',FAND_PLUGIN_URL . 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',array('jquery'),$plugin_version,true);
+			wp_enqueue_script('bootstrap',FAND_PLUGIN_URL . 'assets/js/bootstrap.bundle.min.js',array('jquery'),$plugin_version,true);
 			wp_enqueue_script('custom-script',FAND_PLUGIN_URL . 'assets/js/script.js',array('jquery'),$plugin_version,true);
-			wp_enqueue_script('datatables-js',FAND_PLUGIN_URL . 'node_modules/datatables.net-dt/js/dataTables.min.js',array('jquery'),$plugin_version,true);
+			wp_enqueue_script('datatables-js',FAND_PLUGIN_URL . 'assets/js/dataTables.min.js',array('jquery'),$plugin_version,true);
 		}
-	}
-
-	// Render the licence page
-	public function render_licence_page() {
-		// Inclure la page licence
-		include FAND_PLUGIN_DIR . '/Templates/licence-page.php';
 	}
 
 	// Render the settings page.
@@ -116,7 +101,7 @@ class FANDSettingsPage {
 			// Inclure le tableau des fournisseurs
 			include FAND_PLUGIN_DIR . '/Templates/tableau-fournisseurs.php';
 
-			// Inclure les modales
+			// Inclure la modale
 			include FAND_PLUGIN_DIR . '/Templates/modal-fournisseur.php';
 
 		echo'</div>';
@@ -142,20 +127,16 @@ class FANDSettingsPage {
 
 		// Récupère la commande
 		$order = wc_get_order($order_id);
-		//error_log($order_id);
 
 		if (!$order) {
 			//error_log('Erreur : commande introuvable pour ID : ' . $order_id);
 			return;
 		}
 
-		//error_log('Traitement de la commande ID : ' . $order_id);
-
 		// Adresse email de l'administrateur
 		$admin_email = get_option('admin_email');
 
 		if (!$admin_email) {
-			//error_log('Erreur : aucune adresse email administrateur définie.');
 			return;
 		}
 
@@ -182,7 +163,6 @@ class FANDSettingsPage {
 			$product = wc_get_product($product_id);
 	
 			if (!$product) {
-				//error_log('Produit introuvable pour ID : ' . $product_id);
 				continue;
 			}
 	
@@ -203,7 +183,6 @@ class FANDSettingsPage {
 				));
 
 				if (!$fournisseur_email_row || empty($fournisseur_email_row->email)) {
-					//error_log('Aucun email fournisseur trouvé pour ' . $fournisseur_nom);
 					continue;
 				}
 	
@@ -223,13 +202,11 @@ class FANDSettingsPage {
 					'gtin' => $gtin
 				);
 			} else {
-				//error_log('Aucun fournisseur trouvé pour le produit ID : ' . $product_id);
 				continue;
 			}
 		}
 	
 		if (empty($produits_par_fournisseur)) {
-			//error_log('Aucun produit assigné à un fournisseur pour la commande ID : ' . $order_id);
 			return;
 		}
 
@@ -252,16 +229,7 @@ class FANDSettingsPage {
 			// Envoi de l'email
 			$mail_sent = wp_mail($fournisseur_email, $email_subject, $email_body, $headers);
 
-			/*if ($mail_sent) {
-				error_log('Email envoyé avec succès à ' . $fournisseur_email);
-			} else {
-				error_log('Erreur lors de l\'envoi de l\'email à ' . $fournisseur_email);
-			}*/
 		}
 	}
 
-	public function verify_licence_key(WP_REST_Request $request) {
-        $request=Gestion_licence::verify_licence_key($request);
-        return $request;
-    }
 }
