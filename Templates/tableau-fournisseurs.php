@@ -42,9 +42,6 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                             <div class="centre">
 
-                                <div id="auto-dismiss-licence" class="alert alert-warning">
-                                    La modification et la suppression sont désactivées. Veuillez activer votre licence pour utiliser toutes les fonctionnalités.
-                                </div>
                             <?php
                                 if ($message): 
                             ?>
