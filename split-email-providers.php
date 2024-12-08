@@ -21,24 +21,6 @@ namespace fand;
 
 defined( 'ABSPATH' ) || exit;
 
-// Ajouter le lien 'Réglages' sous le nom du plugin
-add_action('plugins_loaded', function() {
-
-    add_filter('plugin_action_links_' . plugin_basename(__FILE__), function($liens) {
-
-        // URL vers la page principale du plugin
-        $lien_reglages = '<a href="admin.php?page=fsef-license">Réglages</a>';
-
-        // Ajouter le lien de réglage au début de la liste des liens
-        array_unshift($liens, $lien_reglages);
-
-        return $liens;
-
-    });
-
-});
-
-
 
 // Include WooCommerce functions
 include_once(ABSPATH.'wp-admin/includes/plugin.php');
