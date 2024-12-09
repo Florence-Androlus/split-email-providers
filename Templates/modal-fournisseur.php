@@ -26,24 +26,24 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     <input type="text" id="nom" name="nom" required class="form-control">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO.">
                     <label for="adresse">Adresse</label>
                     <input type="text" id="adresse" name="adresse" required class="form-control" readonly>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO.">
                     <label for="cp">Code Postal</label>
-                    <input type="text" id="cp" name="cp" required class="form-control" pattern="\d{5}" title="Veuillez entrer un code postal valide (5 chiffres)" maxlength="5" readonly>
+                    <input type="text" id="cp" name="cp" required class="form-control" readonly>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO.">
                     <label for="ville">Ville</label>
                     <input type="text" id="ville" name="ville" required class="form-control" readonly>
                 </div>
 
                 <div class="div_saut_ligne" style="height:20px;"></div>
 
-                <div class="form-group">
+                <div class="form-group tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO.">
                     <!-- Champ Select pour les pays -->
                     <label for="pays">Pays:</label>
                     <select id="pays" name="pays" disabled required >
@@ -66,7 +66,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
                 <div class="div_saut_ligne" style="height:20px;"></div>
 
-                <div class="form-group">
+                <div class="form-group tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO.">
                     <label for="telephone">Téléphone</label>
                     <input type="tel" id="telephone" name="telephone" required class="form-control" readonly> 
                 </div>

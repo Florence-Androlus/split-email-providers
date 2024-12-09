@@ -87,6 +87,11 @@ jQuery(document).ready(function($) {
     });
 
 
+    // Initialiser les tooltips pour les éléments présents et futurs
+    $(document).on('mouseenter', '[title]', function() {
+        $(this).tooltip();
+    });
+    
     // Suppression du message général au bout de 4 secondes
     setTimeout(function() {
         $('#auto-dismiss').fadeOut('slow');

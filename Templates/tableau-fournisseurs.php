@@ -25,8 +25,10 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                             </button>
                                         </div>
 
-                                        <div>
-                                            <button id="import" class="btn btn-secondary" disabled title="Import désactivée sans licence">Importer</button>
+                                        <div class="tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO pour bénéficier de cette fonctionnalité.">
+                                            <button id="import" class="btn btn-secondary" disabled>
+                                                Importer
+                                            </button>
                                         </div>
                                         <div>
                                         <form id="form" name="form" enctype="multipart/form-data" method="post" action="<?php echo esc_url(home_url('export_csv')) ?>">
@@ -99,17 +101,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                                     </button>';
 
                                                 echo "</td>";
-                                                echo "<td>";
+                                                echo "<td class='tooltip-wrapper' data-bs-toggle='tooltip' title='Vous devez passer à la version PRO pour modifier.'>";
                                                 // Si la licence est valide, afficher le bouton Modifier
                                                 ?>
-                                                    <button class="btn btn-secondary" disabled title="Modification désactivée sans licence"><i class="fas fa-pencil-alt"></i></button>
+                                                    <button class="btn btn-secondary" disabled ><i class="fas fa-pencil-alt"></i></button>
                                                <?php 
                                                 echo "</td>";
-                                                echo "<td>";
+                                                echo "<td class='tooltip-wrapper' data-bs-toggle='tooltip' title='Vous devez passer à la version PRO pour supprimer.'>";
 
                                                 // Si la licence est valide, afficher le bouton Supprimer
                                                 ?>
-                                                    <button class="btn btn-secondary" disabled title="Suppression désactivée sans licence"><i class='fas fa-times'></i></button>
+                                                    <button class="btn btn-secondary" disabled ><i class='fas fa-times'></i></button>
                                                 </td>
                                             </tr>
                                                 <?php

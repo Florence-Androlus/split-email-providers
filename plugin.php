@@ -73,8 +73,8 @@ class FANDSettingsPage {
 
 			// Enqueue des scripts JavaScript
 			wp_enqueue_script('jquery'); // Charge jQuery en priorité
-			wp_enqueue_script('bootstrap',FAND_PLUGIN_URL . 'assets/js/bootstrap.bundle.min.js',array('jquery'),$plugin_version,true);
 			wp_enqueue_script('custom-script',FAND_PLUGIN_URL . 'assets/js/script.js',array('jquery'),$plugin_version,true);
+			wp_enqueue_script('bootstrap',FAND_PLUGIN_URL . 'assets/js/bootstrap.bundle.min.js',array('jquery'),$plugin_version,true);
 			wp_enqueue_script('datatables-js',FAND_PLUGIN_URL . 'assets/js/dataTables.min.js',array('jquery'),$plugin_version,true);
 		}
 	}
