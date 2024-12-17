@@ -107,11 +107,17 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                                     <button class="btn btn-secondary" disabled ><i class="fas fa-pencil-alt"></i></button>
                                                <?php 
                                                 echo "</td>";
-                                                echo "<td class='tooltip-wrapper' data-bs-toggle='tooltip' title='Vous devez passer à la version PRO pour supprimer.'>";
-
-                                                // Si la licence est valide, afficher le bouton Supprimer
-                                                ?>
-                                                    <button class="btn btn-secondary" disabled ><i class='fas fa-times'></i></button>
+                                                echo "<td>";
+                                                    ?>
+                                                    <form id="form" name="form" enctype="multipart/form-data" method="post" action="<?php echo esc_url(home_url("fournisseurs")) ?>">
+                                                    <?php
+                                                        wp_nonce_field('delete_fournisseur_action', 'delete_fournisseur_nonce'); 
+                                                        echo "<input type='hidden' name='fournisseur_id' value='" . esc_attr($fournisseur->id) . "' />"
+                                                    ?>
+                                                    <button type='submit' name='action' value='delete' class='btn btn-danger' title='Supprimer'>
+                                                    <i class='fas fa-times'></i>
+                                                    </button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                                 <?php
