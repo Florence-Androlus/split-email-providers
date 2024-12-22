@@ -79,6 +79,17 @@ class Router {
                 $alert = Export_fournisseurs::exporter_fournisseurs_csv();
                 exit();
             }
+            else if (get_query_var('fand-page') == 'import_csv') {
+                // Vérification du nonce pour l'import CSV
+                if (!isset($_POST['import_fournisseurs_nonce']) || !wp_verify_nonce(sanitize_text_field(wp_unslash($_POST['import_fournisseurs_nonce'])), 'import_fournisseurs_action')) {
+                    wp_die(esc_html__('Vérification nonce échouée. Action non autorisée.', 'split-email-providers'));
+                }
+                $alert= Import_fournisseurs::import_fournisseurs_csv();
+                // Rediriger vers la page de paramètres avec le message et le type
+                $url = admin_url('admin.php?page=fand-settings&message=' . urlencode($alert['message']) . '&message_type=' . $alert['message_type']);
+                wp_redirect($url);
+                exit(); // On empêche le reste du code de s'exécuter
+            }
             else {
                 // sinon, on laisse WP faire
                 return $template;

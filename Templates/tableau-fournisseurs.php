@@ -24,17 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                                 Ajouter
                                             </button>
                                         </div>
-
-                                        <div class="tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO pour bénéficier de cette fonctionnalité.">
-                                            <button id="import" class="btn btn-secondary" disabled>
-                                                Importer
-                                            </button>
+                                        <div>
+                                            <button id="import" class="btn btn-secondary form-group tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO.">Importer</button>
                                         </div>
                                         <div>
-                                        <form id="form" name="form" enctype="multipart/form-data" method="post" action="<?php echo esc_url(home_url('export_csv')) ?>">
-                                            <?php wp_nonce_field('export_fournisseurs_action', 'export_fournisseurs_nonce'); ?>
-                                            <button type="submit" name="action" value="export" class="btn btn-secondary">Exporter</button>
-                                        </form>
+                                            <button id="import" class="btn btn-secondary form-group tooltip-wrapper" data-bs-toggle="tooltip" title="Vous devez passer à la version PRO.">Exporter</button>
                                         </div>
                                     </div>
                                 </div>	
@@ -63,7 +57,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                         <tr>
                                             <th scope="col">#</th>
                                             <th scope="col">Nom</th>
+                                            <th scope="col">Adresse</th>
+                                            <th scope="col">CP</th>
+                                            <th scope="col">Ville</th>
+                                            <th scope="col">Pays</th>
                                             <th scope="col">Email</th>
+                                            <th scope="col">Téléphone</th>
                                             <th scope="col">Voir</th>
                                             <th scope="col">Modifier</th>
                                             <th scope="col">Supprimer</th>
@@ -84,7 +83,12 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                                 echo "<tr>";
                                                 echo "<th scope='row'>" . esc_html($index + 1) . "</th>"; // Index + 1 pour numéroter les lignes
                                                 echo "<td>" . esc_html($fournisseur->nom) . "</td>";
+                                                echo "<td>" . esc_html($fournisseur->adresse) . "</td>";
+                                                echo "<td>" . esc_html($fournisseur->cp) . "</td>";
+                                                echo "<td>" . esc_html(stripslashes($fournisseur->ville)) . "</td>";
+                                                echo "<td>" . esc_html($fournisseur->pays) . "</td>";
                                                 echo "<td>" . esc_html($fournisseur->email) . "</td>";
+                                                echo "<td>" . esc_html($fournisseur->telephone) . "</td>";
                                                 echo "<td>";
 
                                                 // afficher le bouton voir fiche fournisseur
@@ -101,11 +105,18 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                                                     </button>';
 
                                                 echo "</td>";
-                                                echo "<td class='tooltip-wrapper' data-bs-toggle='tooltip' title='Vous devez passer à la version PRO pour modifier.'>";
-                                                // Si la licence est valide, afficher le bouton Modifier
-                                                ?>
-                                                    <button class="btn btn-secondary" disabled ><i class="fas fa-pencil-alt"></i></button>
-                                               <?php 
+                                                echo "<td>";
+                                                    echo '<button type="button" class="btn btn-warning" title="Modifier" 
+                                                    data-id="'. esc_attr($fournisseur->id) .'"
+                                                    data-nom="'. esc_attr($fournisseur->nom) .'"
+                                                    data-adresse="'. esc_attr($fournisseur->adresse) .'"
+                                                    data-cp="'. esc_attr($fournisseur->cp) .'"
+                                                    data-ville="'. esc_attr($fournisseur->ville) .'"
+                                                    data-pays="'. esc_attr($fournisseur->pays) .'"
+                                                    data-email="'. esc_attr($fournisseur->email) .'"
+                                                    data-telephone="'. esc_attr($fournisseur->telephone) .'">
+                                                    <i class="fas fa-pencil-alt"></i>
+                                                    </button>';
                                                 echo "</td>";
                                                 echo "<td>";
                                                     ?>

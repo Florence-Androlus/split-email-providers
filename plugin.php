@@ -101,8 +101,9 @@ class FANDSettingsPage {
 			// Inclure le tableau des fournisseurs
 			include FAND_PLUGIN_DIR . '/Templates/tableau-fournisseurs.php';
 
-			// Inclure la modale
+			// Inclure les modales
 			include FAND_PLUGIN_DIR . '/Templates/modal-fournisseur.php';
+			include FAND_PLUGIN_DIR . '/Templates/import-fournisseurs.php';
 
 		echo'</div>';
 	}

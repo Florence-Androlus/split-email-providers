@@ -8,7 +8,8 @@ jQuery(document).ready(function($) {
         $('#fournisseurId').val(''); // Réinitialiser l'ID
         $('#actionField').val('add'); // Définir l'action sur "add"
         // Activer les champs pour la modification
-        $('#nom, #email').removeAttr('readonly').removeAttr('disabled');
+        $('#nom, #adresse, #cp, #ville, #pays, #email, #telephone').removeAttr('readonly').removeAttr('disabled');
+
         
         // Réinitialiser les autres champs
         $('#nom').val('');
@@ -41,6 +42,28 @@ jQuery(document).ready(function($) {
         $('#email').val($(this).data('email')).prop('disabled', true);
         $('#telephone').val($(this).data('telephone')).prop('disabled', true);
         $('#submitButton').hide();
+        $('#myModal').css('display', 'block');
+
+    });
+
+    // Ouvrir la fenêtre modale pour la modification
+    $('.btn-warning').on('click', function() {
+        $('#modalTitle').text('Modifier un Fournisseur'); // Titre pour la modification
+        $('#fournisseurId').val($(this).data('id')); // Récupérer l'ID du fournisseur
+        $('#actionField').val('update'); // Définir l'action sur "update"
+        // Activer les champs pour la modification
+        $('#nom, #adresse, #cp, #ville, #pays, #email, #telephone').removeAttr('readonly').removeAttr('disabled');
+
+        // Remplir les autres champs avec les données
+        $('#nom').val($(this).data('nom'));
+        $('#adresse').val($(this).data('adresse'));
+        $('#cp').val($(this).data('cp'));
+        $('#ville').val($(this).data('ville'));
+        $('#pays').val($(this).data('pays')).trigger('change');
+        $('#email').val($(this).data('email'));
+        $('#telephone').val($(this).data('telephone'));
+
+        $('#submitButton').text('Modifier').show(); ; // Afficher et mettre le texte du bouton pour la modification
         $('#myModal').css('display', 'block');
 
     });
